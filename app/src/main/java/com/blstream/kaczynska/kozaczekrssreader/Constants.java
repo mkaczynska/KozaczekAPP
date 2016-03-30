@@ -3,7 +3,8 @@ package com.blstream.kaczynska.kozaczekrssreader;
 public interface Constants {
 
     String RSS_LINK = "http://www.kozaczek.pl/rss/plotki.xml";
-    String FRAGMENT_ID = "ItemListFragment";
+    String ITEM_LIST_FRAGMENT_ID = "ItemListFragment";
+    String NO_CONNECTION_FRAGMENT_ID = "noConnectionFragment";
     String SAVED_ADAPTER = "SAVED_ADAPTER";
 
     String ITEM_TAG = "item";
