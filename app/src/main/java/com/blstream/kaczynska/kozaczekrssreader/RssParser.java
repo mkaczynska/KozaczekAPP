@@ -17,7 +17,9 @@ public class RssParser implements Constants {
 
     public Channel parse(String in)
             throws XmlPullParserException, IOException {
-
+        if(in == null){
+            return null;
+        }
         int eventType = setupParser(in);
         Item currentItem = null;
         while (eventType != XmlPullParser.END_DOCUMENT) {
@@ -32,16 +34,6 @@ public class RssParser implements Constants {
         factory.setNamespaceAware(true);
         xpp = factory.newPullParser();
         xpp.setInput(new StringReader(in));
-//        InputStream inputStream = null;
-//
-//        try {
-//            inputStream = IOUtils.toInputStream(in, "UTF8");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF8"));
-//        inputStream = IOUtils.toInputStream(in);
-//        xpp.setInput(inputStream, null);
         return xpp.getEventType();
     }
 
@@ -71,9 +63,7 @@ public class RssParser implements Constants {
         } else if (currentItem != null) {
             try {
                 parseTag(name, currentItem);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (XmlPullParserException e) {
+            } catch (IOException | XmlPullParserException e) {
                 e.printStackTrace();
             }
         }
