@@ -21,6 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Preferences.AppPreferences" android:label="@string/preferencesLabel"
+            android:screenOrientation="nosensor">
+        </activity>
 
         <service
             android:name=".RssPullService"
