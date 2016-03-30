@@ -46,7 +46,7 @@ public class ItemListFragment extends Fragment implements Constants, IGetListLis
     public void onGetListListener(Channel receivedChannel) {
         rssChannel.itemsList.clear();
         rssChannel.itemsList.addAll(receivedChannel.itemsList);
-        rssChannel.setChannelTitle(receivedChannel.getChannelTitle());
+//        rssChannel.setChannelTitle(receivedChannel.getChannelTitle());
         adapter.notifyDataSetChanged();
     }
 

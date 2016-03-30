@@ -52,7 +52,12 @@ public class MainActivity extends AppCompatActivity implements PullToRefreshList
                 noConnectionFragment = new NoConnectionFragment();
             }
         }
-        fragmentTransaction.replace(R.id.fragment, noConnectionFragment);
+        if(!noConnectionFragment.isAdded()) {
+            fragmentTransaction.add(R.id.fragment, noConnectionFragment);
+        }
+        else {
+            fragmentTransaction.replace(R.id.fragment, noConnectionFragment);
+        }
         fragmentTransaction.commit();
     }
 
@@ -66,17 +71,22 @@ public class MainActivity extends AppCompatActivity implements PullToRefreshList
                 itemListFragment = new ItemListFragment();
             }
         }
-        fragmentTransaction.replace(R.id.fragment, itemListFragment);
+        if(!itemListFragment.isAdded()) {
+            fragmentTransaction.add(R.id.fragment, itemListFragment);
+        }
+        else {
+            fragmentTransaction.replace(R.id.fragment, itemListFragment);
+        }
         fragmentTransaction.commit();
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        if (itemListFragment != null) {
+        if (itemListFragment != null && itemListFragment.isAdded()) {
             getSupportFragmentManager().putFragment(outState, ITEM_LIST_FRAGMENT_ID, itemListFragment);
         }
-        if (noConnectionFragment != null) {
+        if (noConnectionFragment != null && noConnectionFragment.isAdded() ){
             getSupportFragmentManager().putFragment(outState, NO_CONNECTION_FRAGMENT_ID, noConnectionFragment);
         }
     }

@@ -35,11 +35,7 @@ public class RssPullService extends IntentService implements Constants {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+
         Channel rssChannel = null;
         String url = intent.getStringExtra(URL_ID);
         try {

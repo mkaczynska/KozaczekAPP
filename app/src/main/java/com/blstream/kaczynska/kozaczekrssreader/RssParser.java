@@ -1,12 +1,10 @@
 package com.blstream.kaczynska.kozaczekrssreader;
 
-import org.apache.commons.io.IOUtils;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 
@@ -17,12 +15,13 @@ public class RssParser implements Constants {
 
     public Channel parse(String in)
             throws XmlPullParserException, IOException {
-
-        int eventType = setupParser(in);
-        Item currentItem = null;
-        while (eventType != XmlPullParser.END_DOCUMENT) {
-            currentItem = addFeed(eventType, currentItem);
-            eventType = xpp.next();
+        if (in != null) {
+            int eventType = setupParser(in);
+            Item currentItem = null;
+            while (eventType != XmlPullParser.END_DOCUMENT) {
+                currentItem = addFeed(eventType, currentItem);
+                eventType = xpp.next();
+            }
         }
         return rssChannel;
     }

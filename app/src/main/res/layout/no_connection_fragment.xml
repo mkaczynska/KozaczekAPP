@@ -9,6 +9,6 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:textSize="@dimen/big_size"
-        android:text="@string/no_connection" />
+        android:text="@string/no_internet_warning" />
 
 </LinearLayout>
