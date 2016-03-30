@@ -3,19 +3,14 @@ package com.blstream.kaczynska.kozaczekrssreader;
 import android.app.IntentService;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.util.Log;
-
 import com.blstream.kaczynska.kozaczekrssreader.Component.DaggerIConnectionComponent;
 import com.blstream.kaczynska.kozaczekrssreader.Component.IConnectionComponent;
 import com.blstream.kaczynska.kozaczekrssreader.ConnectionProvider.IConnection;
 import com.blstream.kaczynska.kozaczekrssreader.Module.ConnectionModule;
-
 import org.xmlpull.v1.XmlPullParserException;
-
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class RssPullService extends IntentService implements Constants {
 
@@ -23,9 +18,6 @@ public class RssPullService extends IntentService implements Constants {
     private static final String URL_CONNECTION = "UrlConnection";
     private static final String OK_HTTP_CONNECTION = "OkHttpConnection";
     private static final String VOLLEY_CONNECTION = "VolleyConnection";
-
-    private String url;
-    private OkHttpCommunicator okHttpCommunicator = new OkHttpCommunicator();
 
     private  IConnectionComponent component;
     private  IConnection connection;
@@ -48,18 +40,15 @@ public class RssPullService extends IntentService implements Constants {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-//        ArrayList<Item> rssItems = null;
         Channel rssChannel = null;
-        url = intent.getStringExtra(URL_ID);
+        String url = intent.getStringExtra(URL_ID);
         try {
             loadPreferences();
             String response = connection.getResponse(url);
             RssParser rssParser = new RssParser();
             rssChannel = rssParser.parse(response);
 
-        } catch (XmlPullParserException e) {
-            Log.w(e.getMessage(), e);
-        } catch (IOException e) {
+        } catch (XmlPullParserException | IOException e) {
             Log.w(e.getMessage(), e);
         }
         Intent localIntent = new Intent(INTENT_MAIN);
@@ -67,15 +56,6 @@ public class RssPullService extends IntentService implements Constants {
         sendBroadcast(localIntent);
     }
 
-    public String getInputString() {
-        String response;
-        try {
-            response = okHttpCommunicator.run(url);
-        } catch (IOException e) {
-            return null;
-        }
-        return response;
-    }
     private void loadPreferences(){
         SharedPreferences SP = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         String downloadType = SP.getString(getString(R.string.downloadType), getString(R.string.downloadValue));

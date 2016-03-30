@@ -16,6 +16,11 @@ public class VolleyConnection implements IConnection{
     public VolleyConnection(Context context){
         this.context = context;
     }
+    /**
+     *  Method used to get Response from Service.
+     * @param mBaseUrl url to service as String.
+     * @return Response from service as a String.
+     */
     @Override
     public String getResponse(String mBaseUrl) {
         RequestQueue queue = Volley.newRequestQueue(context);

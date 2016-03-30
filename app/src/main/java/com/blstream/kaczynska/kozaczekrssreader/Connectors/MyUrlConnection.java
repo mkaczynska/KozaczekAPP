@@ -15,6 +15,12 @@ import java.net.URL;
 public class MyUrlConnection implements IConnection {
     private static final String ENCODING_STANDARD = "ISO-8859-2";
 
+
+    /**
+     *  Method used to get Response from Service.
+     * @param mBaseUrl url to service as String.
+     * @return Response from service as a String.
+     */
     @Override
     public String getResponse(String mBaseUrl) {
         InputStream inputStream;

@@ -1,6 +1,5 @@
 package com.blstream.kaczynska.kozaczekrssreader.Component;
 
-import android.content.Context;
 
 import com.blstream.kaczynska.kozaczekrssreader.Connectors.MyHttpConnection;
 import com.blstream.kaczynska.kozaczekrssreader.Connectors.MyUrlConnection;

@@ -7,6 +7,6 @@
     <string name="downloadOption">Choosed download method</string>
     <string name="downloadDetails">Download Details</string>
     <string name="downloadType">downloadType</string>
-    <string name="downloadValue">1</string>
+    <string name="downloadValue">HttpConnection</string>
     <string name="selected_download_preference">"Selected : "</string>
 </resources>
