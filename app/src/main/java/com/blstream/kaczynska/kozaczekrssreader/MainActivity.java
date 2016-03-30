@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.blstream.kaczynska.kozaczekrssreader.ItemListFragment.PullToRefreshListener;
+import com.blstream.kaczynska.kozaczekrssreader.Preferences.AppPreferences;
 
 import java.util.List;
 
@@ -60,6 +61,11 @@ public class MainActivity extends AppCompatActivity implements PullToRefreshList
 
         if (item.getItemId() == R.id.action_refresh && NetworkUtils.isConnected(connMgr)) {
             getData();
+        }
+        if(item.getItemId() == R.id.action_settings)
+        {
+            Intent i = new Intent(this, AppPreferences.class);
+            startActivity(i);
         }
             return super.onOptionsItemSelected(item);
 

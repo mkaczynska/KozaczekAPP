@@ -7,6 +7,7 @@ import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 
 
@@ -30,17 +31,17 @@ public class RssParser implements Constants {
         XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
         factory.setNamespaceAware(true);
         xpp = factory.newPullParser();
-//        xpp.setInput(new StringReader(in));
-        InputStream inputStream = null;
-
-        try {
-            inputStream = IOUtils.toInputStream(in, "UTF8");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        xpp.setInput(new StringReader(in));
+//        InputStream inputStream = null;
+//
+//        try {
+//            inputStream = IOUtils.toInputStream(in, "UTF8");
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 //        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF8"));
 //        inputStream = IOUtils.toInputStream(in);
-        xpp.setInput(inputStream, null);
+//        xpp.setInput(inputStream, null);
         return xpp.getEventType();
     }
 
