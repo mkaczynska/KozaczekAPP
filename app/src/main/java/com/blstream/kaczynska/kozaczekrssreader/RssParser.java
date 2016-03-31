@@ -1,10 +1,12 @@
 package com.blstream.kaczynska.kozaczekrssreader;
 
+import org.apache.commons.io.IOUtils;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.StringReader;
 import java.io.UnsupportedEncodingException;
 
@@ -15,13 +17,14 @@ public class RssParser implements Constants {
 
     public Channel parse(String in)
             throws XmlPullParserException, IOException {
-        if (in != null) {
-            int eventType = setupParser(in);
-            Item currentItem = null;
-            while (eventType != XmlPullParser.END_DOCUMENT) {
-                currentItem = addFeed(eventType, currentItem);
-                eventType = xpp.next();
-            }
+        if(in == null){
+            return null;
+        }
+        int eventType = setupParser(in);
+        Item currentItem = null;
+        while (eventType != XmlPullParser.END_DOCUMENT) {
+            currentItem = addFeed(eventType, currentItem);
+            eventType = xpp.next();
         }
         return rssChannel;
     }
@@ -31,7 +34,6 @@ public class RssParser implements Constants {
         factory.setNamespaceAware(true);
         xpp = factory.newPullParser();
         xpp.setInput(new StringReader(in));
-
         return xpp.getEventType();
     }
 
@@ -61,9 +63,7 @@ public class RssParser implements Constants {
         } else if (currentItem != null) {
             try {
                 parseTag(name, currentItem);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (XmlPullParserException e) {
+            } catch (IOException | XmlPullParserException e) {
                 e.printStackTrace();
             }
         }
