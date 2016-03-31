@@ -13,9 +13,9 @@ public class AppPreferences extends PreferenceActivity implements SharedPreferen
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
+        // TODO Auto-generated method stub // FIXME good job autogenerator!
         super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.preferences);
+        addPreferencesFromResource(R.xml.preferences); // FIXME: starajmy się nie używać deprecated
         ListPreference listPreference = (ListPreference) findPreference(getString(R.string.downloadType));
         listPreference.setSummary(getString(R.string.selected_download_preference) + listPreference.getValue());
     }

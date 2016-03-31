@@ -34,6 +34,7 @@ public class ItemListFragment extends Fragment implements Constants, IGetListLis
     private MyRssFeedRecyclerViewAdapter adapter = new MyRssFeedRecyclerViewAdapter(rssChannel);
     private MenuItem refreshMenuButton;
     private IGetListListener iGetListListener;
+    ObjectAnimator animator;
 
     public void setiGetListListener(IGetListListener iGetListListener) {
         this.iGetListListener = iGetListListener;
@@ -95,8 +96,9 @@ public class ItemListFragment extends Fragment implements Constants, IGetListLis
 
     private void stopRefreshButtonAnimation() {
         if (refreshMenuButton != null && refreshMenuButton.getActionView() != null) {
-            refreshMenuButton.getActionView().clearAnimation();
-            refreshMenuButton.setActionView(null);
+            animator.setRepeatCount(1);
+//            refreshMenuButton.getActionView().clearAnimation();
+//            refreshMenuButton.setActionView(null);
         }
     }
 
@@ -105,9 +107,10 @@ public class ItemListFragment extends Fragment implements Constants, IGetListLis
 
         ImageView imageButton = (ImageView) inflater.inflate(R.layout.refresh_action, null);
 
-        ObjectAnimator animator = ObjectAnimator.ofFloat(imageButton, "rotation", 0f, 360f);
+        // FIXME nie dociąga animacji do końca tylko zatrzymuje się i jest przeskok
+        animator = ObjectAnimator.ofFloat(imageButton, "rotation", 0f, 360f);
 
-        animator.setRepeatCount(ValueAnimator.INFINITE);
+        animator.setRepeatCount(ValueAnimator.RESTART);
         animator.setDuration(1000);
         animator.start();
         refreshMenuButton.setActionView(imageButton);

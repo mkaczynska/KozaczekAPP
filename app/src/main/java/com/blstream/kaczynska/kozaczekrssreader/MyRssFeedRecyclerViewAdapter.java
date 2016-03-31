@@ -10,11 +10,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
-import java.util.ArrayList;
+import java.util.ArrayList; // FIXME unused
 
 
 public class MyRssFeedRecyclerViewAdapter extends RecyclerView.Adapter<MyRssFeedRecyclerViewAdapter.ViewHolder> implements Parcelable {
 
+    // FIXME śmieci
     //    private  ArrayList<Item> rssFeedList;
     private Channel rssChannel;
     private OnHeadlineSelectedListener onHeadlineSelectedListener;
@@ -31,6 +32,7 @@ public class MyRssFeedRecyclerViewAdapter extends RecyclerView.Adapter<MyRssFeed
         rssChannel = in.readParcelable(Channel.class.getClassLoader());
     }
 
+    // FIXME gdzie komentarze
     public static final Creator<MyRssFeedRecyclerViewAdapter> CREATOR = new Creator<MyRssFeedRecyclerViewAdapter>() {
         @Override
         public MyRssFeedRecyclerViewAdapter createFromParcel(Parcel in) {

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.util.Log;
+
 import com.blstream.kaczynska.kozaczekrssreader.Component.DaggerIConnectionComponent;
 import com.blstream.kaczynska.kozaczekrssreader.Component.IConnectionComponent;
 import com.blstream.kaczynska.kozaczekrssreader.ConnectionProvider.IConnection;
@@ -12,6 +13,8 @@ import com.blstream.kaczynska.kozaczekrssreader.Module.ConnectionModule;
 import org.xmlpull.v1.XmlPullParserException;
 import java.io.IOException;
 
+
+// FIXME A czo to? gdzie opis?
 public class RssPullService extends IntentService implements Constants {
 
     private static final String HTTP_CONNECTION = "HttpConnection";
@@ -33,6 +36,8 @@ public class RssPullService extends IntentService implements Constants {
         connection = component.provideConnection();
     }
 
+
+    // FIXME może by tak {@inheritdoc} ??
     @Override
     protected void onHandleIntent(Intent intent) {
 
@@ -45,7 +50,7 @@ public class RssPullService extends IntentService implements Constants {
             rssChannel = rssParser.parse(response);
 
         } catch (XmlPullParserException | IOException e) {
-            Log.w(e.getMessage(), e);
+            Log.d("Exception Service", "Exception Service");
         }
         Intent localIntent = new Intent(INTENT_MAIN);
         localIntent.putExtra(CHANNEL, rssChannel);

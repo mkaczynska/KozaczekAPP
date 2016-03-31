@@ -6,20 +6,7 @@ import android.os.Parcelable;
 
 import java.util.ArrayList;
 
-public class Channel implements Parcelable{
-    private String channelTitle;
-    private String actualisationDate;
-    public ArrayList<Item> itemsList = new ArrayList<>();
-
-    public Channel() {
-    }
-
-    protected Channel(Parcel in) {
-        channelTitle = in.readString();
-        actualisationDate = in.readString();
-        itemsList = in.createTypedArrayList(Item.CREATOR);
-    }
-
+public class Channel implements Parcelable { // FIXME brak formatowania
     public static final Creator<Channel> CREATOR = new Creator<Channel>() {
         @Override
         public Channel createFromParcel(Parcel in) {
@@ -31,6 +18,34 @@ public class Channel implements Parcelable{
             return new Channel[size];
         }
     };
+    public ArrayList<Item> itemsList = new ArrayList<>();
+    private String channelTitle;
+    private String actualisationDate;
+
+    public Channel() {
+    }
+
+    protected Channel(Parcel in) {
+        channelTitle = in.readString();
+        actualisationDate = in.readString();
+        itemsList = in.createTypedArrayList(Item.CREATOR);
+    }
+
+    private boolean isItemAlreadyAdded(String link) {
+        for (Item item : itemsList) {
+            if (item.getLink().equals(link)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void addItem(Item newItem) {
+        if (!isItemAlreadyAdded(newItem.getLink())) {
+            newItem.setId();
+            itemsList.add(newItem);
+        }
+    }
 
     @Override
     public int describeContents() {

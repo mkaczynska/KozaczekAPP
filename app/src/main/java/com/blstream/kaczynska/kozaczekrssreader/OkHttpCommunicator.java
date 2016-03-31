@@ -7,6 +7,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+
 public class OkHttpCommunicator {
 
     OkHttpClient client;
@@ -21,7 +22,7 @@ public class OkHttpCommunicator {
                 .build();
 
         Response response = client.newCall(request).execute();
-        String responseString = response.body().string();
+        String responseString = response.body().string(); // FIXME są warningi
 
         return responseString;
     }

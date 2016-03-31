@@ -13,8 +13,10 @@ public class OkHttpCommunicator implements IConnection {
     public OkHttpCommunicator() {
         client = new OkHttpClient();
     }
+
     /**
-     *  Method used to get Response from Service.
+     * Method used to get Response from Service.
+     *
      * @param mBaseUrl url to service as String.
      * @return Response from service as a String.
      */

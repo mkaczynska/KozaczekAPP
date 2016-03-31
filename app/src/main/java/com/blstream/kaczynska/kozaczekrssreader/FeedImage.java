@@ -20,9 +20,16 @@ public class FeedImage implements Parcelable {
     private String key;
     private String KEY_BASIS = "img";
 
-    public FeedImage(int id) {
+    public FeedImage() {
+    }
+
+    protected void setId(int id) {
         this.id = id;
-        this.key = KEY_BASIS + id;
+//        this.key = KEY_BASIS + id;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     protected FeedImage(Parcel in) {

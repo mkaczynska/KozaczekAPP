@@ -36,6 +36,8 @@ public class VolleyConnection implements IConnection{
             }
         });
         queue.add(req);
+
+        // FIXME może BlockingQueue?
         while(result == null){
         }
         return result;

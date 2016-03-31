@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -28,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements PullToRefreshList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.savedInstanceState = savedInstanceState;
-//        manageFragments(savedInstanceState);
+//        manageFragments(savedInstanceState)
     }
 
     public void manageFragments(Bundle savedInstanceState) {
@@ -52,10 +51,9 @@ public class MainActivity extends AppCompatActivity implements PullToRefreshList
                 noConnectionFragment = new NoConnectionFragment();
             }
         }
-        if(!noConnectionFragment.isAdded()) {
+        if (!noConnectionFragment.isAdded()) {
             fragmentTransaction.add(R.id.fragment, noConnectionFragment);
-        }
-        else {
+        } else {
             fragmentTransaction.replace(R.id.fragment, noConnectionFragment);
         }
         fragmentTransaction.commit();
@@ -71,10 +69,9 @@ public class MainActivity extends AppCompatActivity implements PullToRefreshList
                 itemListFragment = new ItemListFragment();
             }
         }
-        if(!itemListFragment.isAdded()) {
+        if (!itemListFragment.isAdded()) {
             fragmentTransaction.add(R.id.fragment, itemListFragment);
-        }
-        else {
+        } else {
             fragmentTransaction.replace(R.id.fragment, itemListFragment);
         }
         fragmentTransaction.commit();
@@ -86,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements PullToRefreshList
         if (itemListFragment != null && itemListFragment.isAdded()) {
             getSupportFragmentManager().putFragment(outState, ITEM_LIST_FRAGMENT_ID, itemListFragment);
         }
-        if (noConnectionFragment != null && noConnectionFragment.isAdded() ){
+        if (noConnectionFragment != null && noConnectionFragment.isAdded()) {
             getSupportFragmentManager().putFragment(outState, NO_CONNECTION_FRAGMENT_ID, noConnectionFragment);
         }
     }
@@ -136,6 +133,8 @@ public class MainActivity extends AppCompatActivity implements PullToRefreshList
         getData();
     }
 
+
+    // TODO: nie ma reload bezpośrednio po włączeniu sieci
     private class OnConnectivityChangeReceiver extends BroadcastReceiver {
 
         @Override

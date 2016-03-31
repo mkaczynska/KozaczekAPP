@@ -26,8 +26,8 @@ public class Item implements Parcelable {
     private String link;
 
     public Item() {
-        setId();
-        image = new FeedImage(id);
+//        setId();
+        image = new FeedImage();
     }
 
     protected Item(Parcel in) {
@@ -46,6 +46,7 @@ public class Item implements Parcelable {
     public void setId() {
         id = ID_VALUE;
         ID_VALUE++;
+        image.setId(id);
     }
 
     public String getTitle() {
@@ -78,6 +79,7 @@ public class Item implements Parcelable {
 
     public void setImageUrl(String imageName) {
         this.image.setUrl(imageName);
+        this.image.setKey(imageName);
     }
 
     public String getImageKey() {

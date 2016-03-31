@@ -31,16 +31,7 @@ public class RssParser implements Constants {
         factory.setNamespaceAware(true);
         xpp = factory.newPullParser();
         xpp.setInput(new StringReader(in));
-//        InputStream inputStream = null;
-//
-//        try {
-//            inputStream = IOUtils.toInputStream(in, "UTF8");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "UTF8"));
-//        inputStream = IOUtils.toInputStream(in);
-//        xpp.setInput(inputStream, null);
+
         return xpp.getEventType();
     }
 
@@ -52,7 +43,7 @@ public class RssParser implements Constants {
         } else if (eventType == XmlPullParser.END_TAG) {
             name = xpp.getName();
             if (name.equalsIgnoreCase(ITEM_TAG) && currentItem != null) {
-                rssChannel.itemsList.add(currentItem);
+                rssChannel.addItem(currentItem);
                 System.out.println(currentItem);
             }
         }

@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * Created by user on 30-Mar-16.
+ * Created by user on 30-Mar-16. // FIXME You are best of the best user :D
  */
 public class NoConnectionFragment extends Fragment {
 
